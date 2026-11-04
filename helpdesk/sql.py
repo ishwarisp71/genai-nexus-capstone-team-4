@@ -94,7 +94,12 @@ def execute(sql):
     conn.set_progress_handler(lambda: 1 if time.time() - start > 15 else 0, 100000)
     try:
         cur = conn.execute(sql)
-        return [dict(r) for r in cur.fetchmany(MAX_ROWS)]
+        rows = []
+        for r in cur.fetchmany(MAX_ROWS):
+            d = dict(r)
+            if d not in rows:  # remove repeated rows
+                rows.append(d)
+        return rows
     finally:
         conn.close()
 
