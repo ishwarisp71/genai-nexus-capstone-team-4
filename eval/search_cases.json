@@ -1,0 +1,52 @@
+[
+  {
+    "question": "I want to book a Tatkal ticket through IRCTC. What authentication is required?",
+    "doc": "rb_cc08_2025_tatkal.pdf",
+    "page": 1
+  },
+  {
+    "question": "Can an authorized railway agent book an opening-day Tatkal ticket during the first 30 minutes of the booking window?",
+    "doc": "rb_cc08_2025_tatkal.pdf",
+    "page": 1
+  },
+  {
+    "question": "How many days in advance can I reserve a railway ticket under the revised advance reservation period introduced in November 2024?",
+    "doc": "rb_cc10_2024_advance_reservation.pdf",
+    "page": 1
+  },
+  {
+    "question": "If my train departs between 5:00 AM and 2:00 PM, when should its first reservation chart preferably be prepared?",
+    "doc": "rb_cc10_2025_reservation_charts.pdf",
+    "page": 2
+  },
+  {
+    "question": "When should the first reservation chart preferably be prepared for trains departing between 2:00 PM and midnight or between midnight and 5:00 AM?",
+    "doc": "rb_cc10_2025_reservation_charts.pdf",
+    "page": 2
+  },
+  {
+    "question": "If I cancel my confirmed Vande Bharat Sleeper ticket 10 hours before departure, what percentage of the fare will be deducted?",
+    "doc": "rb_cc08_2026_vande_bharat_sleeper_refund.pdf",
+    "page": 5
+  },
+  {
+    "question": "Which refund rules apply to reserved and unreserved tickets on Amrit Bharat II Express?",
+    "doc": "rb_cc08_2026_vande_bharat_sleeper_refund.pdf",
+    "page": 5
+  },
+  {
+    "question": "If my train is cancelled and I have a confirmed e-ticket, do I need to cancel it online or file a TDR to receive my refund?",
+    "doc": "irctc_refund_rules_jan2026.pdf",
+    "page": 4
+  },
+  {
+    "question": "According to the March 2026 railway reforms, what are the revised cancellation time windows?",
+    "doc": "pib_2026-03-24_reform_express.html",
+    "page": null
+  },
+  {
+    "question": "According to the March 2026 railway reforms, how late can I change my train boarding station?",
+    "doc": "pib_2026-03-24_reform_express.html",
+    "page": null
+  }
+]
