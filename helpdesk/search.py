@@ -14,7 +14,7 @@ _qcache = {}  # question -> embedding, so one question is embedded only once
 
 
 def tokenize(text):
-    """Lowercase words and numbers. Keeps train numbers like 12430 whole."""
+    """Lowercase words and numbers. Keeps train numbers whole."""
     return re.findall(r"[a-z0-9]+|[\u0900-\u097F]+", text.lower())
 
 

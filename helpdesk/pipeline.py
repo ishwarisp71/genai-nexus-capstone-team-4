@@ -33,7 +33,7 @@ def _unknown():
 
 
 def _refusal():
-    return _result(REFUSAL_TEXT)
+    return _result(REFUSAL_TEXT, dont_know=True)
 
 
 def rule_route(question):
