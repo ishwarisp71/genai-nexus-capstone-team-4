@@ -6,7 +6,7 @@ from google.genai import types
 
 load_dotenv()  # reads GEMINI_API_KEY (and optionally GEMINI_MODEL) from .env
 _client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
 EMBED_MODEL = os.getenv("GEMINI_EMBED_MODEL", "gemini-embedding-001")
 
 
