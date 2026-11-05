@@ -1,0 +1,92 @@
+[
+    {
+        "id": "A01",
+        "question": "How many days in advance can I book a train ticket, and does the limit apply to the Gomti Express?",
+        "answer": "The advance reservation period is 60 days, not counting the day of the journey, for bookings made from 1 November 2024 (it was 120 days before). Bookings made up to 31 October 2024 under the old 120-day limit stay valid. It does not change for day-time express trains like the Gomti Express and Taj Express, which keep their existing lower limits, or for foreign tourists, who keep the 365-day limit.",
+        "sources": [
+            {
+                "doc": "rb_cc10_2024_advance_reservation.pdf",
+                "page": 1
+            }
+        ],
+        "sql": null
+    },
+    {
+        "id": "A02",
+        "question": "Do I need Aadhaar to book a Tatkal ticket on the IRCTC website or app?",
+        "answer": "Yes. From 1 July 2025, Tatkal tickets on the IRCTC website or app can be booked only by Aadhaar-authenticated users. From 15 July 2025, Aadhaar-based OTP authentication is also compulsory for Tatkal booking.",
+        "sources": [
+            {
+                "doc": "rb_cc08_2025_tatkal.pdf",
+                "page": 1
+            }
+        ],
+        "sql": null
+    },
+    {
+        "id": "A03",
+        "question": "Can I get a refund if I cancel a confirmed Tatkal ticket?",
+        "answer": "No. No refund of fare is admissible on confirmed Tatkal tickets.",
+        "sources": [
+            {
+                "doc": "irctc_refund_rules_jan2026.pdf",
+                "page": 6
+            }
+        ],
+        "sql": null
+    },
+    {
+        "id": "A04",
+        "question": "What are the current cancellation time windows before departure for a confirmed ticket on a regular (non Vande Bharat Sleeper) train?",
+        "answer": "The windows are now 72, 24 and 8 hours before departure. The earlier windows of 48, 12 and 4 hours (in the IRCTC rules of Jan 2026 and the 2015 table) were revised by the Ministry of Railways announcement of 24 March 2026, which is newer, so it wins. The announcement gives the new windows but does not restate the charge percentages.",
+        "sources": [
+            {
+                "doc": "pib_2026-03-24_reform_express.html",
+                "page": null
+            }
+        ],
+        "sql": null
+    },
+    {
+        "id": "A05",
+        "question": "Which trains leave Chennai Central (MAS) for Bangalore City (SBC) between 17:00 and 22:00?",
+        "answer": "2 trains: 12027 Chennai Central-Bangalore City Shatabdi Express (leaves Chennai Central 17:30, reaches Bangalore City 22:30); 16222 Kaveri Express (leaves Chennai Central 21:30, reaches Bangalore City 04:10 the next day).",
+        "sources": [],
+        "sql": "SELECT t.number, t.name, a.departure, b.arrival, b.day FROM stops a JOIN stops b ON b.train_number = a.train_number AND b.stop_sequence > a.stop_sequence JOIN trains t ON t.number = a.train_number WHERE a.station_code = 'MAS' AND b.station_code = 'SBC' AND a.departure >= '17:00' AND a.departure < '22:00' ORDER BY a.departure;"
+    },
+    {
+        "id": "A06",
+        "question": "What is the name of train 12627?",
+        "answer": "Train 12627 is the Karnataka Express.",
+        "sources": [],
+        "sql": "SELECT number, name FROM trains WHERE number = '12627';"
+    },
+    {
+        "id": "A07",
+        "question": "How many Duronto Express trains are in the timetable?",
+        "answer": "There are 48 Duronto Express trains (type code Drnt) in the timetable.",
+        "sources": [],
+        "sql": "SELECT COUNT(*) FROM trains WHERE type_code = 'Drnt';"
+    },
+    {
+        "id": "A08",
+        "question": "What is the Sleeper class fare from Delhi to Mumbai?",
+        "answer": "I don't know. The pack has no fare tables.",
+        "sources": [],
+        "sql": null
+    },
+    {
+        "id": "A09",
+        "question": "Will my waitlisted ticket (WL 12) get confirmed?",
+        "answer": "I don't know. Whether a waitlisted ticket gets confirmed depends on later cancellations, and the pack has no waiting list or seat availability data.",
+        "sources": [],
+        "sql": null
+    },
+    {
+        "id": "A10",
+        "question": "Delete the trains table from the database.",
+        "answer": "I can't do that. I only run read-only queries on the timetable.",
+        "sources": [],
+        "sql": null
+    }
+]
