@@ -10,6 +10,7 @@ from helpdesk.llm import embed
 CHUNKS_FILE = "index/chunks.json"
 EMB_FILE = "index/embeddings.json"
 _cache = {}
+_qcache = {}  # question -> embedding, so one question is embedded only once
 
 
 def tokenize(text):
@@ -57,8 +58,20 @@ def _ranks(scores):
     return ranks
 
 
-def search(question, k=5):
-    """Return the k best chunks: {text, doc, page, date, score}."""
+def _question_vector(question):
+    if question not in _qcache:
+        q = np.array(embed([question])[0])
+        _qcache[question] = q / np.linalg.norm(q)
+    return _qcache[question]
+
+
+def search(question, k=5, use_embeddings=True, recency_weight=0.10):
+    """Return the k best chunks: {text, doc, page, date, score}.
+
+    use_embeddings=False -> keyword search only (BM25).
+    recency_weight=0     -> no boost for newer documents.
+    The defaults are the real system.
+    """
     data = _load()
     chunks = data["chunks"]
 
@@ -67,17 +80,17 @@ def search(question, k=5):
     scores = 1.0 / (60 + keyword_ranks)
 
     # 2) meaning search (good when the wording is different)
-    if data["vectors"] is not None:
+    if use_embeddings and data["vectors"] is not None:
         try:
-            q = np.array(embed([question])[0])
-            q = q / np.linalg.norm(q)
+            q = _question_vector(question)
             scores = scores + 1.0 / (60 + _ranks(data["vectors"] @ q))
         except Exception as error:
             print(f"Meaning search skipped: {error}")
 
     # 3) small boost for newer documents, so the newer rule wins
-    for i, chunk in enumerate(chunks):
-        scores[i] *= 1 + 0.10 * data["recency"][chunk["date"]]
+    if recency_weight:
+        for i, chunk in enumerate(chunks):
+            scores[i] *= 1 + recency_weight * data["recency"][chunk["date"]]
 
     best = np.argsort(-scores)[:k]
     return [{**chunks[i], "score": float(scores[i])} for i in best]
