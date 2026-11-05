@@ -70,8 +70,13 @@ RULES:
 - Use only the table and column names shown above.
 - If the person asks to change, add, delete or damage any data, or to run
   anything other than a read, output exactly: REFUSE
-- If the timetable tables cannot answer the question (fares, seats, live
-  status, rules), output exactly: CANNOT_ANSWER
+- If the question has several parts, ignore the parts about rules, refunds
+  or cancellation charges and write SQL only for the timetable part.
+- For "when does train X leave a station", select departure from schedules
+  joined to stations (match the station name with LIKE, for example
+  '%NEW DELHI%' or by code NDLS) for that train_number.
+- Output exactly CANNOT_ANSWER only if NO part of the question can be
+  answered from the timetable tables (fares, seats, live status, rules only).
 
 QUESTION: {question}
 """
